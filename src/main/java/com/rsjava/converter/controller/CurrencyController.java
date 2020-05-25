@@ -25,7 +25,7 @@ public class CurrencyController {
     }
 
     @GetMapping("currencies")
-    public List<CurrencyDto> getCurrencies(){
+    public List<CurrencyDto> getAllCurrencies(){
         return currencyMapper.mapToListCurrencyDto(currencyService.getAllRates());
     }
 }
