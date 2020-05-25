@@ -1,6 +1,6 @@
-package com.rsjava.converter.model;
+package com.rsjava.converter.model.nbpapi;
 
-
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -18,7 +18,7 @@ public class NbpModel {
     private String effectiveDate;
     @SerializedName("rates")
     @Expose
-    private List<Rate> rates = null;
+    private List<Rate> rates = new ArrayList<Rate>();
 
     public String getTable() {
         return table;

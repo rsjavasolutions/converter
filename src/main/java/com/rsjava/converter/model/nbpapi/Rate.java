@@ -1,5 +1,5 @@
-package com.rsjava.converter.model;
 
+package com.rsjava.converter.model.nbpapi;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -14,7 +14,7 @@ public class Rate {
     private String code;
     @SerializedName("mid")
     @Expose
-    private Double mid;
+    private Float mid;
 
     public String getCurrency() {
         return currency;
@@ -32,11 +32,11 @@ public class Rate {
         this.code = code;
     }
 
-    public Double getMid() {
+    public Float getMid() {
         return mid;
     }
 
-    public void setMid(Double mid) {
+    public void setMid(Float mid) {
         this.mid = mid;
     }
 
