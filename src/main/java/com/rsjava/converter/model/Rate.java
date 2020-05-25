@@ -2,7 +2,9 @@ package com.rsjava.converter.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
 
+@Data
 public class Rate {
 
     @SerializedName("currency")
@@ -15,28 +17,5 @@ public class Rate {
     @Expose
     private Float mid;
 
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public Float getMid() {
-        return mid;
-    }
-
-    public void setMid(Float mid) {
-        this.mid = mid;
-    }
 
 }
