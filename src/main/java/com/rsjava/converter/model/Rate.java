@@ -1,5 +1,4 @@
-
-package com.rsjava.converter.model.nbpapi;
+package com.rsjava.converter.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

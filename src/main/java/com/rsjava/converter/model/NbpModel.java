@@ -1,4 +1,4 @@
-package com.rsjava.converter.model.nbpapi;
+package com.rsjava.converter.model;
 
 import java.util.ArrayList;
 import java.util.List;

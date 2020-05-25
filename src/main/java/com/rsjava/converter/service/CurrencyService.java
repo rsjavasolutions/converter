@@ -1,8 +1,8 @@
 package com.rsjava.converter.service;
 
 import com.google.gson.Gson;
-import com.rsjava.converter.model.nbpapi.NbpModel;
-import com.rsjava.converter.model.nbpapi.Rate;
+import com.rsjava.converter.model.NbpModel;
+import com.rsjava.converter.model.Rate;
 import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.io.InputStreamReader;
