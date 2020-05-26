@@ -5,6 +5,7 @@ import com.rsjava.converter.exception.IncorrectCurrencyCodeException;
 import com.rsjava.converter.model.NbpModel;
 import com.rsjava.converter.model.Rate;
 import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -22,10 +23,11 @@ public class CurrencyService {
             reader = new InputStreamReader(url.openStream());
         } catch (IOException e) {
             e.printStackTrace();
-        } return new Gson().fromJson(reader, NbpModel[].class)[0].getRates();
+        }
+        return new Gson().fromJson(reader, NbpModel[].class)[0].getRates();
     }
 
-    public Double getValueByCode(String code){
+    public Double getValueByCode(String code) {
         InputStreamReader reader = null;
         try {
             URL url = new URL(
@@ -37,6 +39,6 @@ public class CurrencyService {
         }
         return Optional.of(
                 new Gson().fromJson(reader, NbpModel.class).getRates().get(0).getMid().doubleValue()
-        ).orElseThrow(() -> new IncorrectCurrencyCodeException(code));
+        )       .orElseThrow(() -> new IncorrectCurrencyCodeException(code));
     }
 }

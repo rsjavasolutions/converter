@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class CurrencyCodeDtoMapper {
+public class CurrencyCodeMapper {
 
     private CurrencyCodeDto mapToCurrencyCodeDto(Rate rate){
         return new CurrencyCodeDto(
