@@ -36,7 +36,7 @@ public class CurrencyService {
             e.printStackTrace();
         }
         return Optional.of(
-                new Gson().fromJson(reader, NbpModel[].class)[0].getRates().get(0).getMid().doubleValue()
+                new Gson().fromJson(reader, NbpModel.class).getRates().get(0).getMid().doubleValue()
         ).orElseThrow(() -> new IncorrectCurrencyCodeException(code));
     }
 }

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Component
 public class CurrencyMapper {
 
-    public CurrencyDto mapToCurrencyDto(Rate rate){
+    private CurrencyDto mapToCurrencyDto(Rate rate){
         return new CurrencyDto(
                 rate.getCode(),
                 rate.getCurrency(),
