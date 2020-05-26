@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.xml.crypto.dom.DOMCryptoContext;
+
 @Component
 public class CurrencyConverter {
 
@@ -18,7 +20,12 @@ public class CurrencyConverter {
     public double convert(Transaction transaction){
         double divider = currencyService.getValueByCode(transaction.getFrom());
         double divident = currencyService.getValueByCode(transaction.getTo());
-        return transaction.getAmount() * (divider / divident);
-    }
+        double amount = transaction.getAmount();
 
+        if (0 >= amount){
+            throw new IllegalArgumentException("Amount must be greater than zero");
+        }
+        return MathRound.GET_ROUNDED_NUMBER_TO_FOUR_DECIMAL_PLACES(
+                amount * (divider / divident));
+    }
 }

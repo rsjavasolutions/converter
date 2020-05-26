@@ -28,6 +28,9 @@ public class CurrencyService {
     }
 
     public Double getValueByCode(String code) {
+        if (code.equalsIgnoreCase("PLN")){
+            return  1.00;
+        }
         InputStreamReader reader = null;
         try {
             URL url = new URL(

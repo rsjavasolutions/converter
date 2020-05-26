@@ -16,13 +16,13 @@ public class TransactionMapper {
         this.currencyConverter = currencyConverter;
     }
 
-    public TransactionDto mapToTransactionDto(Transaction transaction){
-       return new TransactionDto(
-               transaction.getAmount(),
-               transaction.getFrom(),
-               transaction.getTo(),
-               currencyConverter.convert(
-                       transaction
-               ));
+    public TransactionDto mapToTransactionDto(Transaction transaction) {
+        TransactionDto transactionDto = new TransactionDto();
+        transactionDto.setAmount(transaction.getAmount());
+        transactionDto.setFrom(transaction.getFrom());
+        transactionDto.setTo(transaction.getTo());
+        transactionDto.setResult(currencyConverter.convert(transaction));
+
+        return transactionDto;
     }
 }
