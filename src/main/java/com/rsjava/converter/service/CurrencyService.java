@@ -27,7 +27,7 @@ public class CurrencyService {
         return new Gson().fromJson(reader, NbpModel[].class)[0].getRates();
     }
 
-    public Double getValueByCode(String code) {
+    public double getValueByCode(String code) {
         if (code.equalsIgnoreCase("PLN")){
             return  1.00;
         }
@@ -40,8 +40,8 @@ public class CurrencyService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Optional.of(
-                new Gson().fromJson(reader, NbpModel.class).getRates().get(0).getMid().doubleValue()
-        )       .orElseThrow(() -> new IncorrectCurrencyCodeException(code));
+        if (reader != null) {
+            return new Gson().fromJson(reader, NbpModel.class).getRates().get(0).getMid().doubleValue();
+        } throw new IncorrectCurrencyCodeException(code);
     }
 }
