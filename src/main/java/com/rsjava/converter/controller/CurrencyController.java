@@ -1,5 +1,6 @@
 package com.rsjava.converter.controller;
 
+import com.rsjava.converter.configuration.SwaggerConfig;
 import com.rsjava.converter.dto.CurrencyCodeDto;
 import com.rsjava.converter.dto.CurrencyDto;
 import com.rsjava.converter.dto.TransactionDto;
@@ -8,10 +9,14 @@ import com.rsjava.converter.dto.mapper.CurrencyMapper;
 import com.rsjava.converter.dto.mapper.TransactionMapper;
 import com.rsjava.converter.model.Transaction;
 import com.rsjava.converter.service.CurrencyService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/")
@@ -33,6 +38,7 @@ public class CurrencyController {
         this.currencyCodeMapper = currencyCodeMapper;
         this.transactionMapper = transactionMapper;
     }
+
 
     @GetMapping("currencies")
     public List<CurrencyDto> getAllCurrencies() {
