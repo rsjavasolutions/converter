@@ -13,7 +13,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import java.util.List;
 
@@ -38,7 +40,6 @@ public class CurrencyController {
         this.currencyCodeMapper = currencyCodeMapper;
         this.transactionMapper = transactionMapper;
     }
-
 
     @GetMapping("currencies")
     public List<CurrencyDto> getAllCurrencies() {
