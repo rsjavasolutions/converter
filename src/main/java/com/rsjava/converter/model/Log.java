@@ -19,11 +19,13 @@ public class Log {
     private String httpMethod;
     private String requestBody;
     private String date;
+    private String httpStatus;
 
-    public Log(String url, String httpMethod, String requestBody, String date) {
+    public Log(String url, String httpMethod, String requestBody, String date, String httpStatus) {
         this.url = url;
         this.httpMethod = httpMethod;
         this.requestBody = requestBody;
         this.date = date;
+        this.httpStatus = httpStatus;
     }
 }
