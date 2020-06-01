@@ -17,14 +17,14 @@ public class Log {
     private Integer id;
     private String url;
     private String httpMethod;
-    private String requestBody;
+    private String body;
     private String date;
     private String httpStatus;
 
-    public Log(String url, String httpMethod, String requestBody, String date, String httpStatus) {
+    public Log(String url, String httpMethod, String body, String date, String httpStatus) {
         this.url = url;
         this.httpMethod = httpMethod;
-        this.requestBody = requestBody;
+        this.body = body;
         this.date = date;
         this.httpStatus = httpStatus;
     }

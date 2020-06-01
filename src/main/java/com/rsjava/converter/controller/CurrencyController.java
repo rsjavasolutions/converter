@@ -53,11 +53,13 @@ public class CurrencyController {
 
     @GetMapping("currencies/codes")
     public List<CurrencyCodeDto> getAllCurrenciesCodes() {
+        logService.createGetAllCurrenciesCodesLog();
         return currencyCodeMapper.mapToListCurrencyCodeDto(currencyService.getAllRates());
     }
 
     @PostMapping("currencies/convert")
     public TransactionDto convert(@RequestBody Transaction transaction) {
+        logService.createConvertLog(transaction.getAmount(),transaction.getFrom(), transaction.getTo());
         return transactionMapper.mapToTransactionDto(transaction);
     }
 }

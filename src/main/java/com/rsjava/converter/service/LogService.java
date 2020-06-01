@@ -23,7 +23,45 @@ public class LogService {
 
     private static final String GET_ALL_CURRENCIES_ENDPOINT_URL = "api/currencies";
     private static final String GET_ALL_CURRENCIES_CODES_ENDPOINT_URL = "api/currencies/codes";
-    private static final String CONVERT_CURRENCIES_ENDPOINT_URL = "api/currencies/codes";
+    private static final String CONVERT_CURRENCIES_ENDPOINT_URL = "api/currencies/convert";
+
+    public void createGetAllCurrenciesLog(){
+        Log log = getBasicLog(
+                GET_ALL_CURRENCIES_ENDPOINT_URL,
+                HttpStatus.OK,
+                HttpMethod.GET,
+                " "
+        );
+        logRepository.save(log);
+    }
+
+    public void createGetAllCurrenciesCodesLog(){
+       Log log = getBasicLog(
+               GET_ALL_CURRENCIES_CODES_ENDPOINT_URL,
+               HttpStatus.OK,
+               HttpMethod.GET,
+               " ");
+       logRepository.save(log);
+    }
+
+    public void createConvertLog(Double amount, String from, String to){
+        Log log = getBasicLog(
+                CONVERT_CURRENCIES_ENDPOINT_URL,
+                HttpStatus.OK,
+                HttpMethod.POST,
+                amount.toString() + ", " + from + ", " + to);
+        logRepository.save(log);
+    }
+
+    private Log getBasicLog(String path, HttpStatus httpStatus, HttpMethod httpMethod, String body){
+        Log log = new Log();
+        log.setUrl(path);
+        log.setHttpStatus(httpStatus.toString());
+        log.setHttpMethod(httpMethod.toString());
+        log.setDate(localDateNow());
+        log.setBody(body);
+        return log;
+    }
 
     private String localDateNow(){
         LocalDateTime localDateTime = LocalDateTime.now();
@@ -31,13 +69,4 @@ public class LogService {
         return dateTimeFormatter.format(localDateTime);
     }
 
-    public void createGetAllCurrenciesLog(){
-        Log log = new Log();
-        log.setUrl(GET_ALL_CURRENCIES_ENDPOINT_URL);
-        log.setHttpMethod(HttpMethod.GET.toString());
-        log.setDate(localDateNow());
-        log.setRequestBody("");
-        log.setHttpStatus(HttpStatus.OK.toString());
-        logRepository.save(log);
-    }
 }
