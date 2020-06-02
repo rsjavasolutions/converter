@@ -16,7 +16,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<Object> handlerNullPointer(NullPointerException ex) {
         ApiError apiError = new ApiError(
-                HttpStatus.INTERNAL_SERVER_ERROR, "INVALID CURRENCY CODE");
+                HttpStatus.INTERNAL_SERVER_ERROR, "INCOMING DATA CAN NOT BE NULL");
         return buildResponseEntity(apiError);
     }
 
@@ -31,6 +31,13 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handlerIllegalArgument(IllegalArgumentException ex) {
         ApiError apiError = new ApiError(
                 HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return buildResponseEntity(apiError);
+    }
+
+    @ExceptionHandler(NullInputDataException.class)
+    public ResponseEntity<Object> handlerNullInputData(NullInputDataException ex) {
+        ApiError apiError = new ApiError(
+                HttpStatus.INTERNAL_SERVER_ERROR, "INCOMING DATA CAN NOT BE NULL");
         return buildResponseEntity(apiError);
     }
 

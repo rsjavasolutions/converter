@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class Transaction {
 
-    private double amount;
+    private Double amount;
     private String from;
     private String to;
 
