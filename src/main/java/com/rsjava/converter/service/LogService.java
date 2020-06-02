@@ -26,37 +26,30 @@ public class LogService {
     private static final String CONVERT_CURRENCIES_ENDPOINT_URL = "api/currencies/convert";
 
     public void createGetAllCurrenciesLog(){
-        Log log = getBasicLog(
+        logRepository.save(buildBasicLog(
                 GET_ALL_CURRENCIES_ENDPOINT_URL,
-                HttpStatus.OK,
                 HttpMethod.GET,
-                " "
-        );
-        logRepository.save(log);
+                ""));
     }
 
     public void createGetAllCurrenciesCodesLog(){
-       Log log = getBasicLog(
+        logRepository.save(buildBasicLog(
                GET_ALL_CURRENCIES_CODES_ENDPOINT_URL,
-               HttpStatus.OK,
                HttpMethod.GET,
-               " ");
-       logRepository.save(log);
+               ""));
     }
 
     public void createConvertLog(Double amount, String from, String to){
-        Log log = getBasicLog(
+        logRepository.save(buildBasicLog(
                 CONVERT_CURRENCIES_ENDPOINT_URL,
-                HttpStatus.OK,
                 HttpMethod.POST,
-                amount.toString() + ", " + from + ", " + to);
-        logRepository.save(log);
+                amount + ", " + from + ", " + to));
     }
 
-    private Log getBasicLog(String path, HttpStatus httpStatus, HttpMethod httpMethod, String body){
+    private Log buildBasicLog(String path, HttpMethod httpMethod, String body){
         Log log = new Log();
         log.setUrl(path);
-        log.setHttpStatus(httpStatus.toString());
+        log.setHttpStatus(HttpStatus.OK.toString());
         log.setHttpMethod(httpMethod.toString());
         log.setDate(localDateNow());
         log.setBody(body);
