@@ -45,6 +45,8 @@ public class LogService {
         HttpStatus httpStatus = null;
         if (isAnyOfInputDataIsNull(transaction)){
             httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        } else if (isAmountLessThanZero(transaction)){
+            httpStatus = HttpStatus.BAD_REQUEST;
         } else {
             httpStatus = HttpStatus.OK;
         }
@@ -75,6 +77,9 @@ public class LogService {
         return (transaction.getAmount() == null
                 || transaction.getFrom() == null
                 || transaction.getTo() == null);
+    }
+    boolean isAmountLessThanZero(Transaction transaction){
+        return transaction.getAmount() <= 0;
     }
 
 }
