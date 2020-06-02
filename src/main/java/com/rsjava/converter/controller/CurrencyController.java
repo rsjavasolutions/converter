@@ -59,7 +59,7 @@ public class CurrencyController {
 
     @PostMapping("currencies/convert")
     public TransactionDto convert(@RequestBody Transaction transaction) {
-        logService.createConvertLog(transaction.getAmount(),transaction.getFrom(), transaction.getTo());
+        logService.createConvertLog(transaction);
         return transactionMapper.mapToTransactionDto(transaction);
     }
 }

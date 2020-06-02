@@ -1,6 +1,7 @@
 package com.rsjava.converter.service;
 
 import com.rsjava.converter.model.Log;
+import com.rsjava.converter.model.Transaction;
 import com.rsjava.converter.repository.LogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -24,40 +25,56 @@ public class LogService {
     private static final String GET_ALL_CURRENCIES_CODES_ENDPOINT_URL = "api/currencies/codes";
     private static final String CONVERT_CURRENCIES_ENDPOINT_URL = "api/currencies/convert";
 
-    public void createGetAllCurrenciesLog(){
+    public void createGetAllCurrenciesLog() {
         logRepository.save(buildBasicLog(
                 GET_ALL_CURRENCIES_ENDPOINT_URL,
                 HttpMethod.GET,
+                HttpStatus.OK,
                 ""));
     }
 
-    public void createGetAllCurrenciesCodesLog(){
+    public void createGetAllCurrenciesCodesLog() {
         logRepository.save(buildBasicLog(
-               GET_ALL_CURRENCIES_CODES_ENDPOINT_URL,
-               HttpMethod.GET,
-               ""));
+                GET_ALL_CURRENCIES_CODES_ENDPOINT_URL,
+                HttpMethod.GET,
+                HttpStatus.OK,
+                ""));
     }
 
-    public void createConvertLog(Double amount, String from, String to){
+    public void createConvertLog(Transaction transaction) {
+        HttpStatus httpStatus = null;
+        if (isAnyOfInputDataIsNull(transaction)){
+            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+        } else {
+            httpStatus = HttpStatus.OK;
+        }
         logRepository.save(buildBasicLog(
                 CONVERT_CURRENCIES_ENDPOINT_URL,
                 HttpMethod.POST,
-                amount + ", " + from + ", " + to));
+                httpStatus,
+                transaction.getAmount() + ", " + transaction.getFrom() + ", " + transaction.getTo()));
     }
 
-    private Log buildBasicLog(String path, HttpMethod httpMethod, String body){
+    private Log buildBasicLog(String path, HttpMethod httpMethod, HttpStatus httpStatus, String body) {
         Log log = new Log();
         log.setUrl(path);
-        log.setHttpStatus(HttpStatus.OK.toString());
+        log.setHttpStatus(httpStatus.toString());
         log.setHttpMethod(httpMethod.toString());
         log.setDate(localDateNow());
         log.setBody(body);
         return log;
     }
 
-    private String localDateNow(){
+    private String localDateNow() {
         LocalDateTime localDateTime = LocalDateTime.now();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return dateTimeFormatter.format(localDateTime);
     }
+
+    boolean isAnyOfInputDataIsNull(Transaction transaction) {
+        return (transaction.getAmount() == null
+                || transaction.getFrom() == null
+                || transaction.getTo() == null);
+    }
+
 }
