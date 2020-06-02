@@ -23,7 +23,7 @@ public class CurrencyConverter {
         double amount = transaction.getAmount();
 
         if (0 >= amount){
-            throw new IllegalArgumentException("Amount must be greater than zero");
+            throw new IllegalArgumentException("AMOUNT MUST BE GREATER THAN ZERO");
         }
         return MathRound.GET_ROUNDED_NUMBER_TO_FOUR_DECIMAL_PLACES(
                 amount * (divider / divident));

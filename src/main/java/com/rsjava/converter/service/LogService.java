@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
-
 public class LogService {
 
     private LogRepository logRepository;
@@ -61,5 +60,4 @@ public class LogService {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return dateTimeFormatter.format(localDateTime);
     }
-
 }
