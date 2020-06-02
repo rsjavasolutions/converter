@@ -1,6 +1,5 @@
 package com.rsjava.converter.service;
 
-import com.rsjava.converter.exception.NullInputDataException;
 import com.rsjava.converter.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,9 +15,6 @@ public class CurrencyConverter {
     }
 
     public double convert(Transaction transaction){
-        if (isAnyOfInIncomingDataIsNull(transaction)){
-            throw  new NullInputDataException();
-        }
         double divider = currencyService.getValueByCode(transaction.getFrom());
         double divident = currencyService.getValueByCode(transaction.getTo());
         double amount = transaction.getAmount();
@@ -29,11 +25,4 @@ public class CurrencyConverter {
         return MathRound.GET_ROUNDED_NUMBER_TO_FOUR_DECIMAL_PLACES(
                 amount * (divider / divident));
     }
-
-    private boolean isAnyOfInIncomingDataIsNull(Transaction transaction){
-        return (transaction.getAmount() == null ||
-                transaction.getFrom() == null ||
-                transaction.getTo() == null);
-    }
-
 }

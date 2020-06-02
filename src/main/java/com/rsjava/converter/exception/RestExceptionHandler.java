@@ -34,13 +34,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(apiError);
     }
 
-    @ExceptionHandler(NullInputDataException.class)
-    public ResponseEntity<Object> handlerNullInputData(NullInputDataException ex) {
-        ApiError apiError = new ApiError(
-                HttpStatus.INTERNAL_SERVER_ERROR, "INCOMING DATA CAN NOT BE NULL");
-        return buildResponseEntity(apiError);
-    }
-
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
