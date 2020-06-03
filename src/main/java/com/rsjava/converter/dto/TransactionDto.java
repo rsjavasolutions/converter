@@ -13,5 +13,4 @@ public class TransactionDto {
     private String from;
     private String to;
     private double result;
-
 }

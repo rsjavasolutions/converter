@@ -15,12 +15,11 @@ import java.util.stream.Collectors;
 public class CurrencyMapper {
 
     private CurrencyDto mapToCurrencyDto(Rate rate){
-        return new CurrencyDto(
-                rate.getCode(),
-                rate.getCurrency(),
-                MathRound.GET_ROUNDED_NUMBER_TO_FOUR_DECIMAL_PLACES(
-                        rate.getMid().doubleValue()
-                ));
+        CurrencyDto currencyDto = new CurrencyDto();
+        currencyDto.setCode(rate.getCode());
+        currencyDto.setCode(rate.getCode());
+        currencyDto.setValue(MathRound.GET_ROUNDED_NUMBER_TO_FOUR_DECIMAL_PLACES(rate.getMid()));
+        return currencyDto;
     }
 
     public List<CurrencyDto> mapToListCurrencyDto(List<Rate> rateList){

@@ -29,7 +29,6 @@ public class LogService {
         logRepository.save(buildBasicLog(
                 GET_ALL_CURRENCIES_ENDPOINT_URL,
                 HttpMethod.GET,
-                HttpStatus.OK,
                 ""));
     }
 
@@ -37,30 +36,19 @@ public class LogService {
         logRepository.save(buildBasicLog(
                 GET_ALL_CURRENCIES_CODES_ENDPOINT_URL,
                 HttpMethod.GET,
-                HttpStatus.OK,
                 ""));
     }
 
     public void createConvertLog(Transaction transaction) {
-        HttpStatus httpStatus = null;
-        if (isAnyOfInputDataIsNull(transaction)){
-            httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-        } else if (isAmountLessThanZero(transaction)){
-            httpStatus = HttpStatus.BAD_REQUEST;
-        } else {
-            httpStatus = HttpStatus.OK;
-        }
         logRepository.save(buildBasicLog(
                 CONVERT_CURRENCIES_ENDPOINT_URL,
                 HttpMethod.POST,
-                httpStatus,
                 transaction.getAmount() + ", " + transaction.getFrom() + ", " + transaction.getTo()));
     }
 
-    private Log buildBasicLog(String path, HttpMethod httpMethod, HttpStatus httpStatus, String body) {
+    private Log buildBasicLog(String path, HttpMethod httpMethod, String body) {
         Log log = new Log();
         log.setUrl(path);
-        log.setHttpStatus(httpStatus.toString());
         log.setHttpMethod(httpMethod.toString());
         log.setDate(localDateNow());
         log.setBody(body);
@@ -72,14 +60,4 @@ public class LogService {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return dateTimeFormatter.format(localDateTime);
     }
-
-    boolean isAnyOfInputDataIsNull(Transaction transaction) {
-        return (transaction.getAmount() == null
-                || transaction.getFrom() == null
-                || transaction.getTo() == null);
-    }
-    boolean isAmountLessThanZero(Transaction transaction){
-        return transaction.getAmount() <= 0;
-    }
-
 }

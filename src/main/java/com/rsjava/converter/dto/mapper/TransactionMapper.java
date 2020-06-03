@@ -22,7 +22,6 @@ public class TransactionMapper {
         transactionDto.setFrom(transaction.getFrom());
         transactionDto.setTo(transaction.getTo());
         transactionDto.setResult(currencyConverter.convert(transaction));
-
         return transactionDto;
     }
 }

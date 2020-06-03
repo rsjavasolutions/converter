@@ -11,5 +11,4 @@ public class CurrencyCodeDto {
 
     private String code;
     private String currency;
-
 }
