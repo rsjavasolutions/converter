@@ -16,7 +16,7 @@ public class CurrencyMapper {
 
     private CurrencyDto mapToCurrencyDto(Rate rate){
         CurrencyDto currencyDto = new CurrencyDto();
-        currencyDto.setCode(rate.getCode());
+        currencyDto.setCurrency(rate.getCurrency());
         currencyDto.setCode(rate.getCode());
         currencyDto.setValue(MathRound.GET_ROUNDED_NUMBER_TO_FOUR_DECIMAL_PLACES(rate.getMid()));
         return currencyDto;
