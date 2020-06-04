@@ -11,7 +11,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Log {
 
-    // to url, metoda HTTP, body, parametrs, data wykonania zapytania.
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

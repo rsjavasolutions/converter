@@ -5,10 +5,10 @@ import com.rsjava.converter.model.Transaction;
 import com.rsjava.converter.repository.LogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 @Service
@@ -56,7 +56,7 @@ public class LogService {
     }
 
     private String localDateNow() {
-        LocalDateTime localDateTime = LocalDateTime.now();
+        LocalDateTime localDateTime = LocalDateTime.now(ZoneId.of("Europe/Berlin"));
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         return dateTimeFormatter.format(localDateTime);
     }

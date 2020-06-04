@@ -1,6 +1,5 @@
 package com.rsjava.converter.controller;
 
-import com.rsjava.converter.configuration.SwaggerConfig;
 import com.rsjava.converter.dto.CurrencyCodeDto;
 import com.rsjava.converter.dto.CurrencyDto;
 import com.rsjava.converter.dto.TransactionDto;
@@ -10,13 +9,8 @@ import com.rsjava.converter.dto.mapper.TransactionMapper;
 import com.rsjava.converter.model.Transaction;
 import com.rsjava.converter.service.CurrencyService;
 import com.rsjava.converter.service.LogService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 import java.util.List;
 
